@@ -2,7 +2,22 @@ body,
 html {
   margin: 0;
   box-sizing: border-box;
-  font-family: monospace;
+  height: 100%;
+}
+
+#root {
+  display: grid;
+  padding: 32px 128px;
+  min-height: 100%;
+  place-items: center;
+  grid-template-rows: 1fr auto auto;
+}
+
+svg {
+  display: block;
+}
+
+.squircle {
   background: rgb(131, 58, 180);
   background: linear-gradient(
     323deg,
@@ -10,15 +25,20 @@ html {
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
+  width: 256px;
+  height: 256px;
 }
 
-#root {
+.app-icon {
+  padding: 16px;
+  background: white;
+  /* background: #242424; */
+}
+
+.apps {
   display: grid;
-  padding: 32px 128px;
-  min-height: calc(100vh - 64px);
-  place-content: center;
-}
-
-path {
-  fill: white;
+  padding: 16px;
+  grid-column-gap: 20px;
+  grid-auto-flow: column;
+  background: rgba(0, 0, 45, 0.05);
 }
