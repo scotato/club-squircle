@@ -1,8 +1,8 @@
 import React from "react";
 import { SquircleMask } from "@scotato/react-squircle";
 import { useCurvature } from "../hooks";
-import { Button } from "@chakra-ui/react";
 import { createSquircleSVG, SquircleMode } from "../squircle";
+import { LinkButton } from "./Button";
 
 function DownloadSquircle() {
   const { curvature } = useCurvature();
@@ -12,18 +12,14 @@ function DownloadSquircle() {
 
   return (
     <SquircleMask p1={4} p2={16}>
-      <Button
-        as="a"
-        size="lg"
-        borderRadius={0}
-        href={svgUrl}
-        colorScheme="blue"
+      <LinkButton
+        to={svgUrl}
         download="squircle.svg"
-        width="100%"
-        target="_blank"
+        colorScheme="blue"
+        size="lg"
       >
         Download SVG
-      </Button>
+      </LinkButton>
     </SquircleMask>
   );
 }
