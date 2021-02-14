@@ -3,42 +3,41 @@ import CurvatureSlider from "./CurvatureSlider";
 import DownloadSquircle from "./DownloadSquircle";
 import SquirclePreview from "./SquirclePreview";
 import Layout from "./Layout";
-import Apps from "./Apps";
-import { SquircleMask } from "@scotato/react-squircle";
-import { Box } from "@chakra-ui/react";
+import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 function App() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue("gray.100", "gray.800");
+
   return (
-    <SquircleMask c={1}>
-      <Layout>
-        <Box
-          p={6}
-          // m={6}
-          height="100%"
-          bg="white"
-          justifyContent="space-between"
-          display="flex"
-          flexDirection="column"
-        >
-          {/* <Apps /> */}
-        </Box>
-        <Box display="grid" placeContent="center">
-          <SquirclePreview />
-        </Box>
-        <Box
-          p={6}
-          // m={6}
-          height="100%"
-          bg="white"
-          justifyContent="space-between"
-          display="flex"
-          flexDirection="column"
-        >
-          <CurvatureSlider />
-          <DownloadSquircle />
-        </Box>
-      </Layout>
-    </SquircleMask>
+    <Layout>
+      <Box
+        p={6}
+        height="100%"
+        bg={bg}
+        justifyContent="space-between"
+        display="flex"
+        flexDirection="column"
+      >
+        <Button onClick={toggleColorMode}>
+          {colorMode === "light" ? "Dark" : "Light"} Mode
+        </Button>
+      </Box>
+      <Box display="grid" placeContent="center">
+        <SquirclePreview />
+      </Box>
+      <Box
+        p={6}
+        height="100%"
+        bg={bg}
+        justifyContent="space-between"
+        display="flex"
+        flexDirection="column"
+      >
+        <CurvatureSlider />
+        <DownloadSquircle />
+      </Box>
+    </Layout>
   );
 }
 

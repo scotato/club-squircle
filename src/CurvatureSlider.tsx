@@ -19,7 +19,7 @@ const CurvatureSlider = () => {
       px={2}
       mb={4}
       step={1}
-      width={236}
+      width={194}
     >
       <SliderTrack>
         <SliderFilledTrack />
