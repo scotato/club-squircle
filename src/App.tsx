@@ -1,44 +1,44 @@
 import React from "react";
-import { SquircleMask } from "@scotato/react-squircle";
-import { ReactComponent as FigmaLogo } from "./figma-logo.svg";
-import { ReactComponent as ReactLogo } from "./react-logo.svg";
-import { ReactComponent as TwitterLogo } from "./twitter-logo.svg";
-import { ReactComponent as GithubLogo } from "./github-logo.svg";
-import { useCurvature } from "./hooks";
 import CurvatureSlider from "./CurvatureSlider";
 import DownloadSquircle from "./DownloadSquircle";
+import SquirclePreview from "./SquirclePreview";
+import Layout from "./Layout";
+import Apps from "./Apps";
+import { SquircleMask } from "@scotato/react-squircle";
+import { Box } from "@chakra-ui/react";
 
 function App() {
-  const { curvature } = useCurvature();
-
   return (
-    <>
-      <SquircleMask c={curvature} className="squircle" />
-      <DownloadSquircle />
-      <CurvatureSlider />
-      <SquircleMask c={curvature} className="apps">
-        <a href="https://www.figma.com/community/plugin/930173909910797614/Squircle">
-          <SquircleMask c={curvature} className="app-icon">
-            <FigmaLogo width={48} height={48} />
-          </SquircleMask>
-        </a>
-        <a href="http://npmjs.com/package/@scotato/react-squircle">
-          <SquircleMask c={curvature} className="app-icon">
-            <ReactLogo width={48} height={48} />
-          </SquircleMask>
-        </a>
-        <a href="http://twitter.com/scotato">
-          <SquircleMask c={curvature} className="app-icon">
-            <TwitterLogo width={48} height={48} />
-          </SquircleMask>
-        </a>
-        <a href="http://github.com/scotato/club-squircle">
-          <SquircleMask c={curvature} className="app-icon">
-            <GithubLogo width={48} height={48} />
-          </SquircleMask>
-        </a>
-      </SquircleMask>
-    </>
+    <SquircleMask c={1}>
+      <Layout>
+        <Box
+          p={6}
+          // m={6}
+          height="100%"
+          bg="white"
+          justifyContent="space-between"
+          display="flex"
+          flexDirection="column"
+        >
+          {/* <Apps /> */}
+        </Box>
+        <Box display="grid" placeContent="center">
+          <SquirclePreview />
+        </Box>
+        <Box
+          p={6}
+          // m={6}
+          height="100%"
+          bg="white"
+          justifyContent="space-between"
+          display="flex"
+          flexDirection="column"
+        >
+          <CurvatureSlider />
+          <DownloadSquircle />
+        </Box>
+      </Layout>
+    </SquircleMask>
   );
 }
 

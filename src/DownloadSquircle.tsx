@@ -11,13 +11,14 @@ function DownloadSquircle() {
   const svgUrl = URL.createObjectURL(svgBlob);
 
   return (
-    <SquircleMask c={curvature}>
+    <SquircleMask c={4}>
       <Button
         as="a"
         size="lg"
         borderRadius={0}
         href={svgUrl}
         download="squircle.svg"
+        width="100%"
         target="_blank"
       >
         Download SVG

@@ -16,14 +16,15 @@ const CurvatureSlider = () => {
       onChange={setCurvature}
       min={1}
       max={10}
+      px={2}
+      mb={4}
       step={1}
-      width={412}
-      m={8}
+      width={236}
     >
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
-      <SliderThumb boxSize={6} />
+      <SliderThumb boxSize={6} mx={2} />
     </Slider>
   );
 };
