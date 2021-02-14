@@ -8,7 +8,8 @@ import Actions from "./Actions";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 function App() {
-  const bg = useColorModeValue("gray.100", "black");
+  const bg = useColorModeValue("gray.100", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.800");
 
   return (
     <Layout>
@@ -23,7 +24,13 @@ function App() {
         <Navigation />
         <Actions />
       </Box>
-      <Box display="grid" placeContent="center" bg={bg}>
+      <Box
+        display="grid"
+        placeContent="center"
+        bg={bg}
+        borderX="1px"
+        borderColor={borderColor}
+      >
         <SquirclePreview />
       </Box>
       <Box
