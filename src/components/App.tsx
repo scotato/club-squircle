@@ -1,7 +1,7 @@
 import React from "react";
-import CurvatureSlider from "./CurvatureSlider";
 import DownloadSquircle from "./DownloadSquircle";
 import SquirclePreview from "./SquirclePreview";
+import SquircleConfig from "./SquircleConfig";
 import Layout from "./Layout";
 import Navigation from "./Navigation";
 import Actions from "./Actions";
@@ -40,7 +40,7 @@ function App() {
         display="flex"
         flexDirection="column"
       >
-        <CurvatureSlider />
+        <SquircleConfig />
         <DownloadSquircle />
       </Box>
     </Layout>
