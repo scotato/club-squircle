@@ -16,6 +16,7 @@ const Navigation = () => {
       <LinkButton
         leftIcon={<FigmaLogo width={24} height={24} />}
         justifyContent="flex-start"
+        fontWeight={400}
         px={3}
         height={10}
         bg={bg}
@@ -28,6 +29,7 @@ const Navigation = () => {
         leftIcon={<ReactLogo width={24} height={24} />}
         to="http://npmjs.com/package/@scotato/react-squircle"
         justifyContent="flex-start"
+        fontWeight={400}
         px={3}
         bg={bg}
         _hover={{ bg: bgHover }}

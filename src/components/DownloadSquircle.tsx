@@ -1,12 +1,15 @@
 import React from "react";
 import { SquircleMask } from "@scotato/react-squircle";
-import { useCurvature } from "../hooks";
-import { createSquircleSVG, SquircleMode } from "../squircle";
+import { useMode, useSimple, useRelative, useFixed } from "../hooks";
+import { createSquircleSVG } from "../squircle";
 import { LinkButton } from "./Button";
 
 function DownloadSquircle() {
-  const { curvature } = useCurvature();
-  const svg = createSquircleSVG({ c: curvature, mode: SquircleMode.simple });
+  const { mode } = useMode();
+  const { c } = useSimple();
+  const { r1, r2 } = useRelative();
+  const { p1, p2 } = useFixed();
+  const svg = createSquircleSVG({ c, mode, r1, r2, p1, p2 });
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
 

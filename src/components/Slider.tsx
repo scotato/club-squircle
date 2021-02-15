@@ -1,26 +1,15 @@
 import React from "react";
-import { useCurvature } from "../hooks";
 import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  SliderProps,
 } from "@chakra-ui/react";
 
-const CurvatureSlider = () => {
-  const { curvature, setCurvature } = useCurvature();
-
+const CurvatureSlider = (props: SliderProps) => {
   return (
-    <Slider
-      value={curvature}
-      onChange={setCurvature}
-      min={1}
-      max={10}
-      px={2}
-      mb={4}
-      step={1}
-      width={194}
-    >
+    <Slider mb={4} width={194} {...props}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

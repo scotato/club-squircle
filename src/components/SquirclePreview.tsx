@@ -1,20 +1,31 @@
 import React from "react";
 import { SquircleMask } from "@scotato/react-squircle";
 import { Box } from "@chakra-ui/react";
-import { useCurvature } from "../hooks";
-import { useWindowSize } from "@react-hook/window-size";
+import { useSquircle, SquircleProps } from "../hooks";
+import { SquircleMode } from "../squircle";
+
+const squircleByMode = (squircle: SquircleProps) => {
+  const { mode, c, r1, r2, p1, p2 } = squircle;
+  switch (mode) {
+    case SquircleMode.Fixed:
+      return { p1, p2 };
+    case SquircleMode.Relative:
+      return { r1, r2 };
+    case SquircleMode.Simple:
+    default:
+      return { c };
+  }
+};
 
 const SquirclePreview = () => {
-  const { curvature } = useCurvature();
-  const [width, height] = useWindowSize();
-  const smallestDimension = width > height ? height : width;
-  const size = smallestDimension * 0.618;
+  const squircle = useSquircle();
+  const squircleMask = squircleByMode(squircle);
 
   return (
-    <SquircleMask c={curvature} className="squircle">
+    <SquircleMask {...squircleMask} className="squircle">
       <Box
-        width={size}
-        height={size}
+        width={squircle.size}
+        height={squircle.size}
         background={`linear-gradient(
           323deg,
           rgba(131, 58, 180, 1) 0%,

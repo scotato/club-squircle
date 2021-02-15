@@ -1,10 +1,10 @@
 export enum SquircleMode {
-  simple = 'simple',
-  fixed = 'fixed',
-  relative = 'relative',
+  Simple = 'simple',
+  Relative = 'relative',
+  Fixed = 'fixed',
 }
 
-export const SquircleDefaultProps = { c: 5, p1: 8, p2: 32, r1: 0.059, r2: 0.332, mode: SquircleMode.simple }
+export const SquircleDefaultProps = { c: 5, p1: 8, p2: 32, r1: 0.059, r2: 0.332, mode: SquircleMode.Simple }
 export interface SquirclePathProps {
   width?: number
   height?: number
@@ -49,8 +49,8 @@ function radiusFromC (c?: number) {
 
 export function createSquirclePath(props: SquirclePathProps = SquircleDefaultProps) {
   const { width = 100, height = 100, r1 = 0.059, r2 = 0.332, p1 = 8, p2 = 32, c, mode } = props
-  const isSimple = mode === SquircleMode.simple
-  const isFixed = mode === SquircleMode.fixed
+  const isSimple = mode === SquircleMode.Simple
+  const isFixed = mode === SquircleMode.Fixed
   const radius = Math.min(width, height)
   const normalized1 = isFixed ? p1 : r1 * radius
   const normalized2 = isFixed ? p2 : r2 * radius
