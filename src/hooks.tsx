@@ -18,12 +18,12 @@ export const useSimple = () => {
 };
 
 export const useRelative = () => {
-  const [{ r1, r2 }, setRelative] = useRelativeState({ r1: 0, r2: 0 });
+  const [{ r1, r2 }, setRelative] = useRelativeState({ r1: 0.059, r2: 0.332 });
   return { r1, r2, setRelative };
 };
 
 export const useFixed = () => {
-  const [{ p1, p2 }, setFixed] = useFixedState({ p1: 0, p2: 0 });
+  const [{ p1, p2 }, setFixed] = useFixedState({ p1: 8, p2: 32 });
   return { p1, p2, setFixed };
 };
 
