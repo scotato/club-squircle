@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Stack, useColorModeValue } from "@chakra-ui/react";
 import { ReactComponent as FigmaLogo } from "../logos/figma-logo.svg";
 import { ReactComponent as ReactLogo } from "../logos/react-logo.svg";
 import { LinkButton } from "./Button";
@@ -10,9 +10,6 @@ const Navigation = () => {
 
   return (
     <Stack spacing={2} direction="column">
-      <Text fontSize={24} fontWeight={700} mb={2} px={4}>
-        Squircle
-      </Text>
       <LinkButton
         leftIcon={<FigmaLogo width={24} height={24} />}
         justifyContent="flex-start"

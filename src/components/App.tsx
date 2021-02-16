@@ -5,7 +5,22 @@ import SquircleConfig from "./SquircleConfig";
 import Layout from "./Layout";
 import Navigation from "./Navigation";
 import Actions from "./Actions";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, Link, useColorModeValue } from "@chakra-ui/react";
+import { repository } from "../../package.json";
+
+const SquircleUrl = "https://en.wikipedia.org/wiki/squircle";
+const SuperellipseUrl = "https://en.wikipedia.org/wiki/superellipse";
+
+interface ReferenceProps {
+  to: string;
+  text: string;
+}
+
+const Reference = ({ to, text }: ReferenceProps) => (
+  <Link href={to} color="blue.500" target="_blank">
+    {text}
+  </Link>
+);
 
 function App() {
   const bg = useColorModeValue("gray.100", "gray.800");
@@ -13,15 +28,20 @@ function App() {
 
   return (
     <Layout>
-      <Box
-        py={6}
-        px={4}
-        height="100%"
-        justifyContent="space-between"
-        display="flex"
-        flexDirection="column"
-      >
+      <Box py={6} px={4} height="100%" display="flex" flexDirection="column">
+        <Text fontSize={24} fontWeight={700} px={2} mb={2}>
+          Squircle
+        </Text>
+
+        <Text px={2} mb={4}>
+          A squircle is an intermediate shape between a square and a circle.
+          This <Reference to={repository} text="open source" /> tool allows you
+          to create and edit <Reference to={SquircleUrl} text="squircles" /> and{" "}
+          <Reference to={SuperellipseUrl} text="superellipses" />.
+        </Text>
+
         <Navigation />
+
         <Actions />
       </Box>
       <Box

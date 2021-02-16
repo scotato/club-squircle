@@ -1,8 +1,8 @@
 import React from "react";
-import { SquircleMask } from "@scotato/react-squircle";
+import { Stack, useClipboard, useToast } from "@chakra-ui/react";
 import { useMode, useSimple, useRelative, useFixed } from "../hooks";
 import { createSquircleSVG } from "../squircle";
-import { LinkButton } from "./Button";
+import SquircleButton, { LinkButton } from "./Button";
 
 function DownloadSquircle() {
   const { mode } = useMode();
@@ -12,18 +12,28 @@ function DownloadSquircle() {
   const svg = createSquircleSVG({ c, mode, r1, r2, p1, p2 });
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
+  const { onCopy } = useClipboard(svg);
+  const toast = useToast();
+
+  const onCopyClick = () => {
+    onCopy();
+    toast({
+      description: "Paste me in your favorite design tool or HTML",
+      position: "top",
+      duration: 4000,
+    });
+  };
 
   return (
-    <SquircleMask p1={4} p2={16}>
-      <LinkButton
-        to={svgUrl}
-        download="squircle.svg"
-        colorScheme="blue"
-        size="lg"
-      >
-        Download SVG
+    <Stack spacing={4} direction="column">
+      <LinkButton to={svgUrl} download="squircle.svg" size="lg">
+        Save
       </LinkButton>
-    </SquircleMask>
+
+      <SquircleButton onClick={onCopyClick} size="lg" colorScheme="blue">
+        Copy
+      </SquircleButton>
+    </Stack>
   );
 }
 

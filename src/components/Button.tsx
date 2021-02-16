@@ -5,13 +5,7 @@ import { Button, ButtonProps, useColorModeValue } from "@chakra-ui/react";
 function SquircleButton(props: ButtonProps) {
   return (
     <SquircleMask p1={4} p2={16}>
-      <Button
-        size="lg"
-        borderRadius={0}
-        colorScheme="blue"
-        width="100%"
-        {...props}
-      />
+      <Button size="lg" borderRadius={0} width="100%" {...props} />
     </SquircleMask>
   );
 }

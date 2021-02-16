@@ -24,6 +24,7 @@ export const Actions = () => {
       justifyContent="center"
       color={color}
       sx={{ path: { fill: "currentColor" } }}
+      mt="auto"
     >
       <IconButton
         fontSize="20px"
