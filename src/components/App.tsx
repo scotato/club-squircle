@@ -26,11 +26,17 @@ const Reference = ({ to, text }: ReferenceProps) => (
 function App() {
   const bg = useColorModeValue("gray.100", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.800");
-
+  // TODO: dark mode word mark
   return (
     <Layout>
       <Box py={6} px={4} height="100%" display="flex" flexDirection="column">
-        <Box as={SquircleWordmark} title="Squircle" m={2} mb={4} />
+        <Box
+          as={SquircleWordmark}
+          title="Squircle"
+          m={2}
+          mb={4}
+          sx={{ path: { fill: "currentColor" } }}
+        />
 
         <Text px={2} mb={4}>
           A squircle is an intermediate shape between a square and a circle.
