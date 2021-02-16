@@ -1,15 +1,13 @@
 import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { Stack, useClipboard, useToast } from "@chakra-ui/react";
-import { useMode, useSimple, useRelative, useFixed } from "../hooks";
-import { createSquircleSVG } from "../squircle";
 import SquircleButton, { LinkButton } from "./Button";
+import { useSquircle } from "../hooks";
+import Squircle from "./Squircle";
 
 function DownloadSquircle() {
-  const { mode } = useMode();
-  const { c } = useSimple();
-  const { r1, r2 } = useRelative();
-  const { p1, p2 } = useFixed();
-  const svg = createSquircleSVG({ c, mode, r1, r2, p1, p2 });
+  useSquircle(); // ensure re-render on props change
+  const svg = renderToStaticMarkup(<Squircle />);
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
   const { onCopy } = useClipboard(svg);

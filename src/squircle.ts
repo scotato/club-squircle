@@ -66,12 +66,5 @@ export function createSquirclePath(props: SquirclePathProps = SquircleDefaultPro
     C ${width}, ${height - radius1} ${width - radius1}, ${height} ${width - radius2}, ${height}
     L ${radius2}, ${height}
     C ${radius1}, ${height} 0, ${height - radius1} 0, ${height - radius2}
-    L 0, ${radius2}
-  `
-}
-
-export function createSquircleSVG(props: SquirclePathProps) {
-  const d = createSquirclePath(props)
-  const path = `<path id="Squircle" fill="#C4C4C4" d="${d}" />`
-  return `<svg xmlns="http://www.w3.org/2000/svg">${path}</svg>`;
+    L 0, ${radius2}`
 }
