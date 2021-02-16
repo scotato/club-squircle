@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import Navigation from "./Navigation";
 import Actions from "./Actions";
 import { Box, Text, Link, useColorModeValue } from "@chakra-ui/react";
+import { ReactComponent as SquircleWordmark } from "../logos/squircle-wordmark.svg";
 import { repository } from "../../package.json";
 
 const SquircleUrl = "https://en.wikipedia.org/wiki/squircle";
@@ -29,9 +30,7 @@ function App() {
   return (
     <Layout>
       <Box py={6} px={4} height="100%" display="flex" flexDirection="column">
-        <Text fontSize={24} fontWeight={700} px={2} mb={2}>
-          Squircle
-        </Text>
+        <Box as={SquircleWordmark} title="Squircle" m={2} mb={4} />
 
         <Text px={2} mb={4}>
           A squircle is an intermediate shape between a square and a circle.
