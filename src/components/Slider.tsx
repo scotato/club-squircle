@@ -9,11 +9,11 @@ import {
 
 const CurvatureSlider = (props: SliderProps) => {
   return (
-    <Slider mb={4} width={194} {...props}>
+    <Slider mb={4} alignSelf="center" width="calc(100% - 16px)" {...props}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
-      <SliderThumb boxSize={6} mx={2} />
+      <SliderThumb boxSize={6} />
     </Slider>
   );
 };
