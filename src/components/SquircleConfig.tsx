@@ -3,6 +3,7 @@ import { Stack } from "@chakra-ui/react";
 import ModeConfig from "./ModeConfig";
 import SimpleConfig from "./SimpleConfig";
 import RelativeConfig from "./RelativeConfig";
+import ImageConfig from "./ImageConfig";
 import { useMode } from "../hooks";
 import { SquircleMode } from "../squircle";
 
@@ -19,7 +20,8 @@ const ModeSwitch = () => {
 
 const SquircleConfig = () => {
   return (
-    <Stack spacing={8}>
+    <Stack spacing={6}>
+      <ImageConfig />
       <ModeConfig />
       <ModeSwitch />
     </Stack>

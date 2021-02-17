@@ -6,6 +6,7 @@ const useModeState = createPersistedState("mode");
 const useSimpleState = createPersistedState("simple");
 const useRelativeState = createPersistedState("relative");
 const useFixedState = createPersistedState("fixed");
+const useImageState = createPersistedState("image");
 
 export const useMode = () => {
   const [mode, setMode] = useModeState(SquircleMode.Simple);
@@ -25,6 +26,11 @@ export const useRelative = () => {
 export const useFixed = () => {
   const [{ p1, p2 }, setFixed] = useFixedState({ p1: 8, p2: 32 });
   return { p1, p2, setFixed };
+};
+
+export const useImage = () => {
+  const [image, setImage] = useImageState({ filename: "", src: "" });
+  return { ...image, setImage };
 };
 
 export type SquircleProps = {

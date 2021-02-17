@@ -1,7 +1,7 @@
 import React from "react";
 import { SquircleMask } from "@scotato/react-squircle";
-import { Box } from "@chakra-ui/react";
-import { useSquircle, SquircleProps } from "../hooks";
+import { Box, Image } from "@chakra-ui/react";
+import { useImage, useSquircle, SquircleProps } from "../hooks";
 import { SquircleMode } from "../squircle";
 
 const squircleByMode = (squircle: SquircleProps) => {
@@ -17,22 +17,38 @@ const squircleByMode = (squircle: SquircleProps) => {
   }
 };
 
+const FileImage = () => {
+  const { size } = useSquircle();
+  const { filename, src } = useImage();
+
+  return <Image src={src} alt={filename} boxSize={size} objectFit="cover" />;
+};
+
+const Gradient = () => {
+  const squircle = useSquircle();
+
+  return (
+    <Box
+      width={squircle.size}
+      height={squircle.size}
+      background={`linear-gradient(
+      323deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(253, 29, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    )`}
+    />
+  );
+};
+
 const SquirclePreview = () => {
+  const { src } = useImage();
   const squircle = useSquircle();
   const squircleMask = squircleByMode(squircle);
 
   return (
     <SquircleMask {...squircleMask} className="squircle">
-      <Box
-        width={squircle.size}
-        height={squircle.size}
-        background={`linear-gradient(
-          323deg,
-          rgba(131, 58, 180, 1) 0%,
-          rgba(253, 29, 29, 1) 50%,
-          rgba(252, 176, 69, 1) 100%
-        )`}
-      />
+      {src ? <FileImage /> : <Gradient />}
     </SquircleMask>
   );
 };

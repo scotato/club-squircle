@@ -1,7 +1,8 @@
 import React from "react";
 import { useRelative } from "../hooks";
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import Slider from "./Slider";
+import Configuration from "./Configuration";
 
 const RelativeConfig = () => {
   const { r1, r2, setRelative } = useRelative();
@@ -10,31 +11,13 @@ const RelativeConfig = () => {
 
   return (
     <Stack spacing={4}>
-      <Stack spacing={3}>
-        <Flex justifyContent="space-between" color="gray.500" userSelect="none">
-          <Text fontSize={12} fontWeight="700">
-            Radius One
-          </Text>
-
-          <Text fontSize={12} fontWeight="400">
-            {r1.toFixed(3)}
-          </Text>
-        </Flex>
+      <Configuration label="Radius One" value={r1.toFixed(3)}>
         <Slider value={r1} onChange={setR1} min={0} max={0.5} step={0.001} />
-      </Stack>
+      </Configuration>
 
-      <Stack spacing={3}>
-        <Flex justifyContent="space-between" color="gray.500" userSelect="none">
-          <Text fontSize={12} fontWeight="700">
-            Radius Two
-          </Text>
-
-          <Text fontSize={12} fontWeight="400">
-            {r2.toFixed(3)}
-          </Text>
-        </Flex>
+      <Configuration label="Radius Two" value={r2.toFixed(3)}>
         <Slider value={r2} onChange={setR2} min={0} max={0.5} step={0.001} />
-      </Stack>
+      </Configuration>
     </Stack>
   );
 };
