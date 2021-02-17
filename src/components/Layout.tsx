@@ -7,9 +7,10 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   return (
     <Grid
+      p={6}
       minH="100vh"
       minW="100vw"
-      gridTemplateColumns="256px 1fr 256px"
+      gridTemplateColumns="280px 1fr 280px"
       children={children}
     />
   );

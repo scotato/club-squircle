@@ -47,9 +47,11 @@ const SquirclePreview = () => {
   const squircleMask = squircleByMode(squircle);
 
   return (
-    <SquircleMask {...squircleMask} className="squircle">
-      {src ? <FileImage /> : <Gradient />}
-    </SquircleMask>
+    <Box display="grid" placeContent="center">
+      <SquircleMask {...squircleMask} className="squircle">
+        {src ? <FileImage /> : <Gradient />}
+      </SquircleMask>
+    </Box>
   );
 };
 

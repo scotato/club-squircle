@@ -21,9 +21,9 @@ const ModeSwitch = () => {
 const SquircleConfig = () => {
   return (
     <Stack spacing={6}>
-      <ImageConfig />
       <ModeConfig />
       <ModeSwitch />
+      <ImageConfig />
     </Stack>
   );
 };

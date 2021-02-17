@@ -23,7 +23,7 @@ function DownloadSquircle() {
   };
 
   return (
-    <Stack spacing={4} direction="column">
+    <Stack spacing={4} direction="column" mt="auto">
       <LinkButton
         to={svgUrl}
         download="squircle.svg"
@@ -36,7 +36,8 @@ function DownloadSquircle() {
       <SquircleButton
         onClick={onCopyClick}
         size="lg"
-        colorScheme="blue"
+        color="white"
+        bg="blue.500"
         userSelect="none"
       >
         Copy

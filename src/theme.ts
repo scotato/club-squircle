@@ -5,7 +5,7 @@ const theme = extendTheme({
   styles: {
     global: (props) => ({
       "html, body": {
-        bg: mode("white", "gray.900")(props),
+        bg: mode("gray.100", "gray.800")(props),
       },
       'input[type="file"]': {
         color: 'transparent'
