@@ -32,11 +32,11 @@ const Gradient = () => {
       width={squircle.size}
       height={squircle.size}
       background={`linear-gradient(
-      323deg,
-      rgba(131, 58, 180, 1) 0%,
-      rgba(253, 29, 29, 1) 50%,
-      rgba(252, 176, 69, 1) 100%
-    )`}
+        323deg,
+        rgba(131, 58, 180, 1) 0%,
+        rgba(253, 29, 29, 1) 50%,
+        rgba(252, 176, 69, 1) 100%
+      )`}
     />
   );
 };

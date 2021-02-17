@@ -36,6 +36,7 @@ function DownloadSquircle() {
       <SquircleButton
         onClick={onCopyClick}
         size="lg"
+        colorScheme="blue"
         color="white"
         bg="blue.500"
         userSelect="none"
