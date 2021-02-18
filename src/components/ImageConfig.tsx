@@ -20,7 +20,7 @@ const ImageConfig = () => {
   };
 
   return (
-    <Configuration label="Image" value="">
+    <Configuration label="Image">
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"

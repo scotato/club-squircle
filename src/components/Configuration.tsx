@@ -3,7 +3,7 @@ import { Flex, Stack, Text } from "@chakra-ui/react";
 
 interface ConfigurationProps {
   label: string;
-  value: string | number;
+  value?: string | number;
   children: JSX.Element;
 }
 

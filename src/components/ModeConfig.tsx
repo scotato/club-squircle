@@ -1,24 +1,39 @@
 import React from "react";
 import { useMode } from "../hooks";
 import { SquircleMode } from "../squircle";
-import { Stack, Select, Text } from "@chakra-ui/react";
+import { Grid, Button, useColorModeValue } from "@chakra-ui/react";
 
 const ModeConfig = () => {
   const { mode, setMode } = useMode();
+  const bgGrid = useColorModeValue("gray.100", "gray.800");
+  const bgActive = useColorModeValue("gray.300", "gray.700");
+  const bgInactive = useColorModeValue("gray.100", "gray.800");
+  const bgButton = (m: SquircleMode) => (m === mode ? bgActive : bgInactive);
+  const onClick = (m: SquircleMode) => () => setMode(m);
 
   return (
-    <Stack spacing={3} userSelect="none">
-      <Text fontSize={12} fontWeight="700" color="gray.500">
-        Mode
-      </Text>
-      <Select
-        value={mode}
-        onChange={(e) => setMode(e.target.value as SquircleMode)}
-      >
-        <option value="simple">Simple</option>
-        <option value="relative">Advanced</option>
-      </Select>
-    </Stack>
+    <Grid
+      p={2}
+      bg={bgGrid}
+      gridColumnGap={2}
+      borderRadius={12}
+      userSelect="none"
+      direction="row"
+      gridTemplateColumns="1fr 1fr"
+    >
+      <Button
+        size="xs"
+        children="Simple"
+        bg={bgButton(SquircleMode.Simple)}
+        onClick={onClick(SquircleMode.Simple)}
+      />
+      <Button
+        size="xs"
+        children="Advanced"
+        bg={bgButton(SquircleMode.Relative)}
+        onClick={onClick(SquircleMode.Relative)}
+      />
+    </Grid>
   );
 };
 
