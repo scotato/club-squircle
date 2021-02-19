@@ -1,12 +1,10 @@
 import React from "react";
-import { useRelative } from "../hooks";
+import { useSquircle } from "../hooks";
 import Slider from "./Slider";
 import Configuration from "./Configuration";
 
 const RelativeConfig = () => {
-  const { r1, r2, setRelative } = useRelative();
-  const setR1 = (r1: number) => setRelative({ r1, r2 });
-  const setR2 = (r2: number) => setRelative({ r1, r2 });
+  const { r1, r2, setR1, setR2 } = useSquircle();
 
   return (
     <>

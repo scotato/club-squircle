@@ -1,10 +1,10 @@
 import React from "react";
-import { useMode } from "../hooks";
+import { useSquircle } from "../hooks";
 import { SquircleMode } from "../squircle";
 import { Grid, Button, useColorModeValue } from "@chakra-ui/react";
 
 const ModeConfig = () => {
-  const { mode, setMode } = useMode();
+  const { mode, setMode } = useSquircle();
   const bgGrid = useColorModeValue("gray.100", "gray.800");
   const bgActive = useColorModeValue("gray.300", "gray.700");
   const bgInactive = useColorModeValue("gray.100", "gray.800");

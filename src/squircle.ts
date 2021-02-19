@@ -4,16 +4,31 @@ export enum SquircleMode {
   Fixed = 'fixed',
 }
 
-export const SquircleDefaultProps = { c: 5, p1: 8, p2: 32, r1: 0.059, r2: 0.332, mode: SquircleMode.Simple }
-export interface SquirclePathProps {
-  width?: number
-  height?: number
+export type SquircleImage = {
+  filename: string
+  src: string
+}
+
+export const SquircleDefaultProps = { 
+  mode: SquircleMode.Simple,
+  image: { filename: "", src: "" },
+  c: 5, 
+  r1: 0.059, 
+  r2: 0.332, 
+  p1: 8, 
+  p2: 32, 
+}
+
+export interface SquircleProps {
+  mode?: SquircleMode
+  image?: SquircleImage
+  c?: number
   r1?: number
   r2?: number
   p1?: number
   p2?: number
-  c?: number
-  mode?: SquircleMode
+  width?: number
+  height?:number
 }
 
 const RATIO = 0.1765
@@ -47,7 +62,7 @@ function radiusFromC (c?: number) {
   }
 }
 
-export function createSquirclePath(props: SquirclePathProps = SquircleDefaultProps) {
+export function createSquirclePath(props: SquircleProps = SquircleDefaultProps) {
   const { width = 512, height = 512, r1 = 0.059, r2 = 0.332, p1 = 8, p2 = 32, c, mode } = props
   const isSimple = mode === SquircleMode.Simple
   const isFixed = mode === SquircleMode.Fixed

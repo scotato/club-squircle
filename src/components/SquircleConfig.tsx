@@ -4,11 +4,11 @@ import ModeConfig from "./ModeConfig";
 import SimpleConfig from "./SimpleConfig";
 import RelativeConfig from "./RelativeConfig";
 import ImageConfig from "./ImageConfig";
-import { useMode } from "../hooks";
+import { useSquircle } from "../hooks";
 import { SquircleMode } from "../squircle";
 
 const ModeSwitch = () => {
-  const { mode } = useMode();
+  const { mode } = useSquircle();
   switch (mode) {
     case SquircleMode.Relative:
       return <RelativeConfig />;

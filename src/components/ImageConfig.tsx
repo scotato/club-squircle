@@ -7,12 +7,13 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { AttachmentIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useImage } from "../hooks";
+import { useSquircle } from "../hooks";
 import Configuration from "./Configuration";
 
 const ImageConfig = () => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const { filename, setImage } = useImage();
+  const { image, setImage } = useSquircle();
+  const { filename } = image;
   const content = filename ? `"${filename}"` : `"Add an Image"`;
   const removeImage = () => {
     setImage({ filename: "", src: "" });
@@ -44,6 +45,7 @@ const ImageConfig = () => {
           accept="image/*"
           ref={inputRef}
           _before={{ content }}
+          _hover={{ cursor: "pointer" }}
         />
         {filename && (
           <InputRightElement
