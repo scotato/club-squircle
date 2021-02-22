@@ -105,7 +105,7 @@ export const squircleImageString = (squircle: SquircleProps) => {
         x="0"
         y="0"
         width="${width}"
-      height="${height}"
+        height="${height}"
       >
         <path d="${d}" fill="#C4C4C4"></path>
       </mask>
