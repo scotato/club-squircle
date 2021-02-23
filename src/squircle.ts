@@ -63,7 +63,7 @@ function radiusFromC (c?: number) {
 }
 
 export function createSquirclePath(props: SquircleProps = SquircleDefaultProps) {
-  const { width = 512, height = 512, r1 = 0.059, r2 = 0.332, p1 = 8, p2 = 32, c, mode } = props
+  const { width = 1024, height = 1024, r1 = 0.059, r2 = 0.332, p1 = 8, p2 = 32, c, mode } = props
   const isSimple = mode === SquircleMode.Simple
   const isFixed = mode === SquircleMode.Fixed
   const radius = Math.min(width, height)
