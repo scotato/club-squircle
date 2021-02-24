@@ -17,12 +17,12 @@ export const useSquircle = () => {
     ...squircle,
     image,
     size,
+    setImage,
     setMode: (mode: SquircleMode) => setSquircle({ ...squircle, mode }),
     setC: (c: number) => setSquircle({ ...squircle, c }),
     setR1: (r1: number) => setSquircle({ ...squircle, r1 }),
     setR2: (r2: number) => setSquircle({ ...squircle, r2 }),
     setP1: (p1: number) => setSquircle({ ...squircle, p1 }),
     setP2: (p2: number) => setSquircle({ ...squircle, p2 }),
-    setImage,
   };
 };

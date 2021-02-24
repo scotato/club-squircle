@@ -6,15 +6,16 @@ import { squircleString } from "./Squircle";
 import { useSquircle } from "../hooks";
 
 function DownloadSquircle() {
+  const toast = useToast();
   const squircle = useSquircle();
   const svg = squircleString(squircle);
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
-  const toast = useToast();
-  const download = squircle.image.src ? "squircle.png" : "squircle.svg";
+  const hasImage = !!squircle.image?.src;
+  const download = hasImage ? "squircle.png" : "squircle.svg";
 
   const onCopyClick = () => {
-    if (squircle.image.src) {
+    if (hasImage) {
       svgToPng((url) => {
         copy(url);
         toast({
@@ -54,13 +55,15 @@ function DownloadSquircle() {
         size="lg"
         userSelect="none"
         onClick={(e) => {
-          e.preventDefault();
-          svgToPng((url) => {
-            const link = document.createElement("a");
-            link.download = download;
-            link.href = url;
-            link.click();
-          });
+          if (hasImage) {
+            e.preventDefault();
+            svgToPng((url) => {
+              const link = document.createElement("a");
+              link.download = download;
+              link.href = url;
+              link.click();
+            });
+          }
         }}
       >
         Save
@@ -73,6 +76,7 @@ function DownloadSquircle() {
         color="white"
         bg="blue.500"
         userSelect="none"
+        disabled={hasImage}
       >
         Copy
       </SquircleButton>
