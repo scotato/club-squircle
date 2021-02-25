@@ -1,4 +1,4 @@
-import { useSquircle } from "../hooks";
+import { useSquircle, useImage } from "../hooks";
 import { createSquirclePath } from "../squircle";
 import { useTheme } from "@chakra-ui/react";
 import { SquircleProps } from "../squircle";
@@ -6,6 +6,7 @@ import { SquircleProps } from "../squircle";
 const SquircleImage = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props;
   const squircle = useSquircle();
+  const { src, filename } = useImage();
   const squirclePath = createSquirclePath(squircle);
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
 
@@ -27,11 +28,11 @@ const SquircleImage = (props: SquircleProps) => {
         <path d={d} fill="#C4C4C4" />
       </mask>
       <image
-        id="image0"
+        id={filename}
         width="100%"
         height="100%"
         mask="url(#SquircleMask)"
-        xlinkHref={squircle.image.src}
+        xlinkHref={src}
         preserveAspectRatio="xMinYMin slice"
       />
     </svg>
@@ -42,11 +43,12 @@ const Squircle = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props;
   const theme = useTheme();
   const squircle = useSquircle();
+  const image = useImage();
   const squirclePath = createSquirclePath({ ...squircle, width, height });
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
   const fill = theme.colors?.gray?.["500"] ?? "#C4C4C4";
 
-  if (squircle.image.src) return <SquircleImage />;
+  if (image.src) return <SquircleImage />;
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`}>

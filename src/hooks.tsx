@@ -1,28 +1,58 @@
+import { useEffect, useContext } from "react";
 import createPersistedState from "use-persisted-state";
 import { useWindowSize } from "@react-hook/window-size";
-import { SquircleDefaultProps, SquircleMode, SquircleImage } from "./squircle";
+import { SquircleDefaultProps, SquircleMode } from "./squircle";
+import { AppContext } from "./components/Context";
+import { Types } from "./reducers";
 
 const useSquircleState = createPersistedState("squircle");
-const useImageState = createPersistedState("image");
-const initialImage = { filename: "", src: "" };
 
 export const useSquircle = () => {
   const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
-  const [image, setImage] = useImageState<SquircleImage>(initialImage);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
   const size = smallestDimension * 0.618;
 
   return {
     ...squircle,
-    image,
     size,
-    setImage,
     setMode: (mode: SquircleMode) => setSquircle({ ...squircle, mode }),
     setC: (c: number) => setSquircle({ ...squircle, c }),
     setR1: (r1: number) => setSquircle({ ...squircle, r1 }),
     setR2: (r2: number) => setSquircle({ ...squircle, r2 }),
     setP1: (p1: number) => setSquircle({ ...squircle, p1 }),
     setP2: (p2: number) => setSquircle({ ...squircle, p2 }),
+  };
+};
+
+export const useImage = () => {
+  const { state, dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    const upload = document.getElementById("ImageInput") as HTMLInputElement;
+    if (upload) {
+      upload.onchange = () => {
+        const file = upload?.files?.[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            dispatch({
+              type: Types.Set,
+              payload: {
+                src: e.target?.result as string,
+                filename: file.name,
+              },
+            });
+          };
+          reader.readAsDataURL(file); // convert to base64 string
+        }
+      };
+    }
+  }, [dispatch]);
+
+  return {
+    src: state.image.src,
+    filename: state.image.filename,
+    removeImage: () => dispatch({ type: Types.Remove }),
   };
 };

@@ -3,35 +3,25 @@ import { Stack, useToast } from "@chakra-ui/react";
 import copy from "copy-to-clipboard";
 import SquircleButton, { LinkButton } from "./Button";
 import { squircleString } from "./Squircle";
-import { useSquircle } from "../hooks";
+import { useSquircle, useImage } from "../hooks";
 
 function DownloadSquircle() {
   const toast = useToast();
+  const { src, filename } = useImage();
   const squircle = useSquircle();
-  const svg = squircleString(squircle);
+  const svg = squircleString({ ...squircle, image: { src, filename } });
   const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   const svgUrl = URL.createObjectURL(svgBlob);
-  const hasImage = !!squircle.image?.src;
+  const hasImage = !!src;
   const download = hasImage ? "squircle.png" : "squircle.svg";
 
   const onCopyClick = () => {
-    if (hasImage) {
-      svgToPng((url) => {
-        copy(url);
-        toast({
-          description: "Paste me in your favorite design tool or HTML",
-          position: "top",
-          duration: 4000,
-        });
-      });
-    } else {
-      copy(svg);
-      toast({
-        description: "Paste me in your favorite design tool or HTML",
-        position: "top",
-        duration: 4000,
-      });
-    }
+    copy(svg);
+    toast({
+      description: "Paste me in your favorite design tool or HTML",
+      position: "top",
+      duration: 4000,
+    });
   };
 
   const svgToPng = (cb: (url: string) => void) => {

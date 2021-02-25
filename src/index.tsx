@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { AppProvider } from "./components/Context";
 import App from "./components/App";
 import theme from "./theme";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <ColorModeScript />
-      <App />
-    </ChakraProvider>
+    <AppProvider>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript />
+        <App />
+      </ChakraProvider>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

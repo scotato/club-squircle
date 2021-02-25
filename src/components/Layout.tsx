@@ -4,6 +4,7 @@ import { Grid } from "@chakra-ui/react";
 interface LayoutProps {
   children: React.ReactNode;
 }
+
 function Layout({ children }: LayoutProps) {
   return (
     <Grid

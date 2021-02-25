@@ -7,18 +7,13 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { AttachmentIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useSquircle } from "../hooks";
+import { useImage } from "../hooks";
 import Configuration from "./Configuration";
 
 const ImageConfig = () => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const { image, setImage } = useSquircle();
-  const { filename } = image;
+  const { filename, removeImage } = useImage();
   const content = filename ? `"${filename}"` : `"Add an Image"`;
-  const removeImage = () => {
-    setImage({ filename: "", src: "" });
-    if (inputRef.current) inputRef.current.value = "";
-  };
 
   return (
     <Configuration label="Image">
@@ -28,20 +23,9 @@ const ImageConfig = () => {
           children={<AttachmentIcon color="gray.500" />}
         />
         <Input
+          id="ImageInput"
           type="file"
           variant="filled"
-          onChange={(e) => {
-            const file = e.target?.files?.[0] ?? null;
-            if (file?.name) {
-              var reader = new FileReader();
-              reader.onload = (e) =>
-                setImage({
-                  filename: file.name,
-                  src: e.target?.result as string,
-                });
-              reader.readAsDataURL(file); // convert to base64 string
-            }
-          }}
           accept="image/*"
           ref={inputRef}
           _before={{ content }}
@@ -53,7 +37,10 @@ const ImageConfig = () => {
               <IconButton
                 aria-label="Delete Image"
                 icon={<DeleteIcon color="gray.500" />}
-                onClick={removeImage}
+                onClick={() => {
+                  removeImage();
+                  if (inputRef.current) inputRef.current.value = "";
+                }}
               />
             }
           />
