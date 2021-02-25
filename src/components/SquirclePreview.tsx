@@ -1,12 +1,17 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import Squircle from "./Squircle";
+import { useSquircle } from "../hooks";
 
 const SquirclePreview = () => {
+  const { size } = useSquircle();
+
   return (
-    <Box id="Squircle" display="grid" p={16}>
-      <Squircle />
-    </Box>
+    <Grid id="Squircle" placeContent="center">
+      <Box width={size} height={size}>
+        <Squircle />
+      </Box>
+    </Grid>
   );
 };
 
