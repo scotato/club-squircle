@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@types/use-persisted-state": "^0.3.0"
+    "@types/use-persisted-state": "^0.3.0",
+    "figmint": "^0.8.1"
   }
 }
