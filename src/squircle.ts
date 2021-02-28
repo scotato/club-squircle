@@ -12,6 +12,7 @@ export type SquircleImage = {
 export const SquircleDefaultProps = { 
   mode: SquircleMode.Simple,
   image: { filename: "", src: "" },
+  fill: '#C4C4C4',
   c: 5, 
   r1: 0.059, 
   r2: 0.332, 
@@ -22,6 +23,7 @@ export const SquircleDefaultProps = {
 export interface SquircleProps {
   mode?: SquircleMode
   image?: SquircleImage
+  fill?: string
   c?: number
   r1?: number
   r2?: number

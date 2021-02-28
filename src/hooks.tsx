@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import createPersistedState from "use-persisted-state";
 import { useWindowSize } from "@react-hook/window-size";
+import { useTheme } from "@chakra-ui/react";
 import { SquircleDefaultProps, SquircleMode } from "./squircle";
 import { AppContext } from "./components/Context";
 import { Types } from "./reducers";
@@ -11,7 +12,7 @@ export const useSquircle = () => {
   const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
-  const size = smallestDimension * 0.618;
+  const size = smallestDimension * 0.5;
 
   return {
     ...squircle,
@@ -22,7 +23,27 @@ export const useSquircle = () => {
     setR2: (r2: number) => setSquircle({ ...squircle, r2 }),
     setP1: (p1: number) => setSquircle({ ...squircle, p1 }),
     setP2: (p2: number) => setSquircle({ ...squircle, p2 }),
+    setFill: (fill: string) => setSquircle({ ...squircle, fill }),
   };
+};
+
+export const useColors = () => {
+  const { colors } = useTheme();
+
+  return {
+    whiteAlpha: colors.whiteAlpha,
+    blackAlpha: colors.blackAlpha,
+    gray: colors.gray,
+    red: colors.red,
+    orange: colors.orange,
+    yellow: colors.yellow,
+    green: colors.green,
+    teal: colors.teal,
+    blue: colors.blue,
+    cyan: colors.cyan,
+    purple: colors.purple,
+    pink: colors.pink,
+  } as Record<string, any>;
 };
 
 export const useImage = () => {

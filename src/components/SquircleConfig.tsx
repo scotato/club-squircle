@@ -4,6 +4,7 @@ import ModeConfig from "./ModeConfig";
 import SimpleConfig from "./SimpleConfig";
 import RelativeConfig from "./RelativeConfig";
 import ImageConfig from "./ImageConfig";
+import FillConfig from "./FillConfig";
 import { useSquircle } from "../hooks";
 import { SquircleMode } from "../squircle";
 
@@ -24,6 +25,7 @@ const SquircleConfig = () => {
       <ModeConfig />
       <ModeSwitch />
       <ImageConfig />
+      <FillConfig />
     </Stack>
   );
 };

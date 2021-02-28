@@ -1,6 +1,5 @@
 import { useSquircle, useImage } from "../hooks";
 import { createSquirclePath } from "../squircle";
-import { useTheme } from "@chakra-ui/react";
 import { SquircleProps } from "../squircle";
 
 const SquircleImage = (props: SquircleProps) => {
@@ -25,8 +24,9 @@ const SquircleImage = (props: SquircleProps) => {
         width="100%"
         height="100%"
       >
-        <path d={d} fill="#C4C4C4" />
+        <path d={d} />
       </mask>
+      <path d={d} fill={squircle.fill} />
       <image
         id={filename}
         width="100%"
@@ -34,6 +34,7 @@ const SquircleImage = (props: SquircleProps) => {
         mask="url(#SquircleMask)"
         xlinkHref={src}
         preserveAspectRatio="xMinYMin slice"
+        fill="red"
       />
     </svg>
   );
@@ -41,12 +42,11 @@ const SquircleImage = (props: SquircleProps) => {
 
 const Squircle = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props;
-  const theme = useTheme();
   const squircle = useSquircle();
   const image = useImage();
+  const fill = props.fill ?? squircle.fill ?? "#C4C4C4";
   const squirclePath = createSquirclePath({ ...squircle, width, height });
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
-  const fill = theme.colors?.gray?.["500"] ?? "#C4C4C4";
 
   if (image.src) return <SquircleImage />;
 
@@ -90,8 +90,9 @@ export const squircleImageString = (squircle: SquircleProps) => {
         width="100%"
         height="100%"
       >
-        <path d="${d}" fill="#C4C4C4"></path>
+        <path d="${d}"></path>
       </mask>
+      <path d="${d}" fill="${squircle.fill}" />
       <image
         id="image0"
         width="100%"
