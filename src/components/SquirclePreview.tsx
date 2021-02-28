@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Box } from "@chakra-ui/react";
-import Squircle from "./Squircle";
+// import Squircle from "./Squircle";
+import Colors from "./Colors";
 import { useSquircle } from "../hooks";
 
 const SquirclePreview = () => {
@@ -9,7 +10,8 @@ const SquirclePreview = () => {
   return (
     <Grid id="Squircle" placeContent="center">
       <Box width={size} height={size}>
-        <Squircle />
+        {/* <Squircle /> */}
+        <Colors />
       </Box>
     </Grid>
   );
