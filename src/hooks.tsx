@@ -12,7 +12,7 @@ export const useSquircle = () => {
   const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
-  const size = smallestDimension * 0.5;
+  const size = smallestDimension * 0.6;
 
   return {
     ...squircle,
@@ -31,8 +31,6 @@ export const useColors = () => {
   const { colors } = useTheme();
 
   return {
-    whiteAlpha: colors.whiteAlpha,
-    blackAlpha: colors.blackAlpha,
     gray: colors.gray,
     red: colors.red,
     orange: colors.orange,
