@@ -14,6 +14,7 @@ export const SquircleImage = (props: SquircleProps) => {
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      overflow="visible"
     >
       <mask
         id="SquircleMask"
@@ -53,7 +54,11 @@ const Squircle = (props: SquircleProps) => {
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${width} ${height}`}
+      overflow="visible"
+    >
       <path id="Squircle" fill={fill} d={d} />
     </svg>
   );
