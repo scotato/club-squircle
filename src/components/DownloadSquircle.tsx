@@ -38,7 +38,7 @@ function DownloadSquircle() {
   };
 
   return (
-    <Stack mt="auto" pt={4} spacing={4} direction="column">
+    <Stack mt="auto" pt={5} spacing={4} direction="column">
       <LinkButton
         to={svgUrl}
         download={download}

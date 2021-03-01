@@ -9,6 +9,7 @@ import { Types } from "./reducers";
 const useSquircleState = createPersistedState("squircle");
 
 export const useSquircle = () => {
+  const { colors } = useTheme();
   const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
@@ -24,6 +25,7 @@ export const useSquircle = () => {
     setP1: (p1: number) => setSquircle({ ...squircle, p1 }),
     setP2: (p2: number) => setSquircle({ ...squircle, p2 }),
     setFill: (fill: string) => setSquircle({ ...squircle, fill }),
+    fillName: getFillName(squircle.fill, colors),
   };
 };
 
@@ -75,3 +77,13 @@ export const useImage = () => {
     removeImage: () => dispatch({ type: Types.Remove }),
   };
 };
+
+function getFillName(fill: string, colors: Record<string, any>) {
+  for (const fillKey of Object.keys(colors)) {
+    for (const scaleKey of Object.keys(colors[fillKey])) {
+      if (fill === colors[fillKey][scaleKey]) return `${fillKey} ${scaleKey}`;
+    }
+  }
+
+  return "Color";
+}

@@ -1,15 +1,16 @@
 import React from "react";
 import { Grid, Box } from "@chakra-ui/react";
-import Squircle from "./Squircle";
-import { useSquircle } from "../hooks";
+import Squircle, { SquircleImage } from "./Squircle";
+import { useSquircle, useImage } from "../hooks";
 
 const SquirclePreview = () => {
   const { size } = useSquircle();
+  const { src } = useImage();
 
   return (
     <Grid id="Squircle" placeContent="center">
-      <Box width={size} height={size}>
-        <Squircle />
+      <Box p={2} width={size} height={size}>
+        {src ? <SquircleImage /> : <Squircle />}
       </Box>
     </Grid>
   );

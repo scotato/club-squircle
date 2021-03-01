@@ -2,7 +2,7 @@ import { useSquircle, useImage } from "../hooks";
 import { createSquirclePath } from "../squircle";
 import { SquircleProps } from "../squircle";
 
-const SquircleImage = (props: SquircleProps) => {
+export const SquircleImage = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props;
   const squircle = useSquircle();
   const { src, filename } = useImage();
@@ -43,12 +43,14 @@ const SquircleImage = (props: SquircleProps) => {
 const Squircle = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props;
   const squircle = useSquircle();
-  const image = useImage();
   const fill = props.fill ?? squircle.fill ?? "#C4C4C4";
-  const squirclePath = createSquirclePath({ ...squircle, width, height });
+  const squirclePath = createSquirclePath({
+    ...squircle,
+    ...props,
+    width,
+    height,
+  });
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
-
-  if (image.src) return <SquircleImage />;
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`}>
