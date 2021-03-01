@@ -7,7 +7,6 @@ const Sidebar = (props: BoxProps) => {
   return (
     <Box
       p={6}
-      height="100vh"
       display="flex"
       flexDirection="column"
       overflowY="auto"

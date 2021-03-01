@@ -13,7 +13,7 @@ export const useSquircle = () => {
   const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
-  const size = smallestDimension * 0.6;
+  const size = smallestDimension * 0.618;
 
   return {
     ...squircle,

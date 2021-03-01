@@ -67,7 +67,7 @@ export const squircleString = (squircle: SquircleProps) => {
 
   return `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">
-      <path id="Squircle" fill="#C4C4C4" d="${d}" />
+      <path id="Squircle" fill="${squircle.fill}" d="${d}" />
     </svg>
   `;
 };
