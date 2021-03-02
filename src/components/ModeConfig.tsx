@@ -4,11 +4,12 @@ import { SquircleMode } from "../squircle";
 import { Grid, Button, useColorModeValue } from "@chakra-ui/react";
 
 const ModeConfig = () => {
-  const { mode, setMode } = useSquircle();
+  const { shape, setMode } = useSquircle();
   const bgGrid = useColorModeValue("gray.100", "gray.800");
   const bgActive = useColorModeValue("gray.300", "gray.700");
   const bgInactive = useColorModeValue("gray.100", "gray.800");
-  const bgButton = (m: SquircleMode) => (m === mode ? bgActive : bgInactive);
+  const bgButton = (m: SquircleMode) =>
+    m === shape.mode ? bgActive : bgInactive;
   const onClick = (m: SquircleMode) => () => setMode(m);
 
   return (

@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import {
+  Box,
   Grid,
   Text,
   Button,
   Circle,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { SquircleMode } from "../squircle";
 import { useColors, useSquircle } from "../hooks";
 import Configuration from "./Configuration";
-import Squircle from "./Squircle";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 const ColorPalette = () => {
   const colors = useColors();
-  const { fill, setFill } = useSquircle();
+  const { style, setFillColor } = useSquircle();
   const borderColor = useColorModeValue("gray.100", "gray.700");
 
   return (
@@ -26,11 +25,10 @@ const ColorPalette = () => {
       {Object.keys(colors).map((fillKey) =>
         Object.keys(colors[fillKey]).map((scaleKey) => {
           const color = colors[fillKey][scaleKey];
-          const isSelected = color === fill;
+          const isSelected = color === style.fillColor;
 
           return (
             <Button
-              display="block"
               key={`${fillKey}.${scaleKey}`}
               p="1px"
               width="20px"
@@ -40,17 +38,11 @@ const ColorPalette = () => {
               borderWidth={2}
               borderRadius={7}
               borderColor={isSelected ? "blue.500" : borderColor}
-              onClick={() => setFill(color)}
+              onClick={() => setFillColor(color)}
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
             >
-              <Squircle
-                width={18}
-                height={18}
-                fill={color}
-                c={10}
-                mode={SquircleMode.Simple}
-              />
+              <Box width={3} height={3} bg={color} borderRadius={3} />
             </Button>
           );
         })
@@ -61,7 +53,7 @@ const ColorPalette = () => {
 
 const ImageConfig = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const { fill, fillName } = useSquircle();
+  const { style, fillName } = useSquircle();
   const borderColor = useColorModeValue("white", "gray.900");
 
   return (
@@ -74,7 +66,7 @@ const ImageConfig = () => {
               size="5"
               borderWidth={2}
               borderColor={borderColor}
-              bg={fill}
+              bg={style.fillColor}
             />
           }
           justifyContent="space-between"

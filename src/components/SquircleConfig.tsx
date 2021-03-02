@@ -9,8 +9,8 @@ import { useSquircle } from "../hooks";
 import { SquircleMode } from "../squircle";
 
 const ModeSwitch = () => {
-  const { mode } = useSquircle();
-  switch (mode) {
+  const { shape } = useSquircle();
+  switch (shape.mode) {
     case SquircleMode.Relative:
       return <RelativeConfig />;
     case SquircleMode.Simple:

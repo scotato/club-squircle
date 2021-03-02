@@ -1,31 +1,30 @@
 import { useEffect, useContext } from "react";
-import createPersistedState from "use-persisted-state";
 import { useWindowSize } from "@react-hook/window-size";
 import { useTheme } from "@chakra-ui/react";
-import { SquircleDefaultProps, SquircleMode } from "./squircle";
+import { SquircleMode } from "./squircle";
 import { AppContext } from "./components/Context";
 import { Types } from "./reducers";
 
-const useSquircleState = createPersistedState("squircle");
-
 export const useSquircle = () => {
   const { colors } = useTheme();
-  const [squircle, setSquircle] = useSquircleState(SquircleDefaultProps);
+  const { state, dispatch } = useContext(AppContext);
   const [width, height] = useWindowSize();
   const smallestDimension = width > height ? height : width;
   const size = smallestDimension * 0.618;
 
   return {
-    ...squircle,
+    ...state,
     size,
-    setMode: (mode: SquircleMode) => setSquircle({ ...squircle, mode }),
-    setC: (c: number) => setSquircle({ ...squircle, c }),
-    setR1: (r1: number) => setSquircle({ ...squircle, r1 }),
-    setR2: (r2: number) => setSquircle({ ...squircle, r2 }),
-    setP1: (p1: number) => setSquircle({ ...squircle, p1 }),
-    setP2: (p2: number) => setSquircle({ ...squircle, p2 }),
-    setFill: (fill: string) => setSquircle({ ...squircle, fill }),
-    fillName: getFillName(squircle.fill, colors),
+    setMode: (mode: SquircleMode) =>
+      dispatch({ type: Types.ShapeMode, payload: mode }),
+    setC: (c: number) => dispatch({ type: Types.ShapeC, payload: c }),
+    setR1: (r1: number) => dispatch({ type: Types.ShapeR1, payload: r1 }),
+    setR2: (r2: number) => dispatch({ type: Types.ShapeR2, payload: r2 }),
+    setP1: (p1: number) => dispatch({ type: Types.ShapeP1, payload: p1 }),
+    setP2: (p2: number) => dispatch({ type: Types.ShapeP2, payload: p2 }),
+    setFillColor: (fillColor: string) =>
+      dispatch({ type: Types.StyleFillColor, payload: fillColor }),
+    fillName: getFillName(state.style.fillColor, colors),
   };
 };
 
@@ -58,7 +57,7 @@ export const useImage = () => {
           const reader = new FileReader();
           reader.onload = (e) => {
             dispatch({
-              type: Types.Set,
+              type: Types.ImageSet,
               payload: {
                 src: e.target?.result as string,
                 filename: file.name,
@@ -74,7 +73,7 @@ export const useImage = () => {
   return {
     src: state.image.src,
     filename: state.image.filename,
-    removeImage: () => dispatch({ type: Types.Remove }),
+    removeImage: () => dispatch({ type: Types.ImageRemove }),
   };
 };
 

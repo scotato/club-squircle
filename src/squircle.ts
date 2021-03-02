@@ -7,30 +7,67 @@ export enum SquircleMode {
 export type SquircleImage = {
   filename: string
   src: string
+  clip: boolean
+  padding: number
 }
 
-export const SquircleDefaultProps = { 
+export type SquircleStyle =  {
+  fillColor: string
+  strokeWidth: number
+  strokeColor: string
+}
+
+export type SquircleShape =  {
+  mode: SquircleMode
+  c: number
+  r1: number
+  r2: number
+  p1: number
+  p2: number
+  width: number
+  height:number
+}
+
+export type SquircleProps =  {
+  shape: SquircleShape
+  style: SquircleStyle
+  image: SquircleImage
+}
+
+export const SquircleShapeInitialState = { 
   mode: SquircleMode.Simple,
-  image: { filename: "", src: "" },
-  fill: '#C4C4C4',
   c: 5, 
   r1: 0.059, 
   r2: 0.332, 
   p1: 8, 
-  p2: 32, 
+  p2: 32,
+  width: 1024,
+  height: 1024
 }
 
-export interface SquircleProps {
-  mode?: SquircleMode
-  image?: SquircleImage
-  fill?: string
-  c?: number
-  r1?: number
-  r2?: number
-  p1?: number
-  p2?: number
-  width?: number
-  height?:number
+export const SquircleStyleInitialState = { 
+  fillColor: '#C4C4C4',
+  strokeWidth: 0,
+  strokeColor: '#EEEEEE',
+}
+
+export const SquircleImageInitialState = { 
+  filename: "",
+  src: "",
+  padding: 0,
+  clip: false
+}
+
+export type InitialState = {
+  shape: SquircleShape,
+  style: SquircleStyle,
+  image: SquircleImage
+}
+
+export const initialState = { 
+  shape: SquircleShapeInitialState,
+  style: SquircleStyleInitialState,
+  image: SquircleImageInitialState
 }
 
 const RATIO = 0.1765
@@ -64,8 +101,8 @@ function radiusFromC (c?: number) {
   }
 }
 
-export function createSquirclePath(props: SquircleProps = SquircleDefaultProps) {
-  const { width = 1024, height = 1024, r1 = 0.059, r2 = 0.332, p1 = 8, p2 = 32, c, mode } = props
+export function createSquirclePath(props: SquircleProps = initialState) {
+  const { mode, c, r1, r2, p1, p2, width, height } = props.shape
   const isSimple = mode === SquircleMode.Simple
   const isFixed = mode === SquircleMode.Fixed
   const radius = Math.min(width, height)

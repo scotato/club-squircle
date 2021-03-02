@@ -4,7 +4,8 @@ import Slider from "./Slider";
 import Configuration from "./Configuration";
 
 const SimpleConfig = () => {
-  const { c, setC } = useSquircle();
+  const { shape, setC } = useSquircle();
+  const { c } = shape;
 
   return (
     <Configuration label="Curvature" value={c}>

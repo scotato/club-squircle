@@ -4,7 +4,8 @@ import Slider from "./Slider";
 import Configuration from "./Configuration";
 
 const RelativeConfig = () => {
-  const { r1, r2, setR1, setR2 } = useSquircle();
+  const { shape, setR1, setR2 } = useSquircle();
+  const { r1, r2 } = shape;
 
   return (
     <>
