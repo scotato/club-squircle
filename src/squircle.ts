@@ -46,9 +46,9 @@ export const SquircleShapeInitialState = {
 }
 
 export const SquircleStyleInitialState = { 
-  fillColor: '#C4C4C4',
+  fillColor: 'hsl(189, 89%, 72%)',
   strokeWidth: 0,
-  strokeColor: '#EEEEEE',
+  strokeColor: 'hsl(190, 100%, 42%)',
 }
 
 export const SquircleImageInitialState = { 

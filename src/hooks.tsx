@@ -6,9 +6,9 @@ import { AppContext } from "./components/Context";
 import { Types } from "./reducers";
 
 export const useSquircle = () => {
-  const { colors } = useTheme();
   const { state, dispatch } = useContext(AppContext);
   const [width, height] = useWindowSize();
+  const colors = useColors();
   const smallestDimension = width > height ? height : width;
   const size = smallestDimension * 0.618;
 

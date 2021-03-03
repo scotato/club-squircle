@@ -1,6 +1,7 @@
 import { useSquircle, useImage } from "../hooks";
 import { createSquirclePath } from "../squircle";
 import { SquircleProps } from "../squircle";
+import { rgbFromHsl } from "../colors";
 
 export const SquircleImage = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props.shape;
@@ -43,9 +44,7 @@ export const SquircleImage = (props: SquircleProps) => {
 
 const Squircle = (props: SquircleProps) => {
   const squircle = useSquircle();
-  const width = props.shape.width || squircle.shape.width;
-  const height = props.shape.height || squircle.shape.height;
-  const fill = props.style.fillColor || squircle.style.fillColor || "#C4C4C4";
+  const { width, height } = squircle.shape;
   const squirclePath = createSquirclePath({ ...squircle, ...props });
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
 
@@ -55,7 +54,7 @@ const Squircle = (props: SquircleProps) => {
       viewBox={`0 0 ${width} ${height}`}
       overflow="visible"
     >
-      <path id="Squircle" fill={fill} d={d} />
+      <path id="Squircle" fill={squircle.style.fillColor} d={d} />
     </svg>
   );
 };
@@ -65,10 +64,11 @@ export const squircleString = (squircle: SquircleProps) => {
   const { width, height } = squircle.shape;
   const squirclePath = createSquirclePath({ ...squircle });
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
+  const fill = rgbFromHsl(squircle.style.fillColor);
 
   return `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">
-      <path id="Squircle" fill="${squircle.style.fillColor}" d="${d}" />
+      <path id="Squircle" fill="${fill}" d="${d}" />
     </svg>
   `;
 };
