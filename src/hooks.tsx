@@ -71,15 +71,12 @@ export const useImage = () => {
   }, [dispatch]);
 
   return {
-    src: state.image.src,
-    filename: state.image.filename,
-    clip: state.image.clip,
-    padding: state.image.padding,
+    ...state.image,
     removeImage: () => dispatch({ type: Types.ImageRemove }),
     setClip: (clip: boolean) =>
       dispatch({ type: Types.ImageClip, payload: clip }),
-    setPadding: (padding: number) =>
-      dispatch({ type: Types.ImagePad, payload: padding }),
+    setScale: (scale: number) =>
+      dispatch({ type: Types.ImageScale, payload: scale }),
   };
 };
 

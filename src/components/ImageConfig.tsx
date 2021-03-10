@@ -10,17 +10,11 @@ import { AttachmentIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useImage } from "../hooks";
 import Configuration from "./Configuration";
 import Slider from "./Slider";
+import SegmentedControl from "./SegmentedControl";
 
 const ImageConfig = () => {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const {
-    filename,
-    clip,
-    padding,
-    setClip,
-    setPadding,
-    removeImage,
-  } = useImage();
+  const { filename, clip, scale, setClip, setScale, removeImage } = useImage();
   const hasImage = !!filename;
   const content = hasImage ? `"${filename}"` : `"Add an Image"`;
 
@@ -58,15 +52,25 @@ const ImageConfig = () => {
         </InputGroup>
       </Configuration>
       {hasImage && (
-        <Configuration label="Image Padding">
-          <Slider
-            value={padding}
-            onChange={setPadding}
-            min={0}
-            max={50}
-            step={1}
-          />
-        </Configuration>
+        <>
+          <Configuration label="Image Scale" value={`${scale}%`}>
+            <Slider
+              value={scale}
+              onChange={setScale}
+              min={50}
+              max={100}
+              step={1}
+            />
+          </Configuration>
+
+          <Configuration label="Image Clip">
+            <SegmentedControl
+              segments={["Clip", "Don't Clip"]}
+              activeSegment={clip ? "Clip" : "Don't Clip"}
+              onSegmentClick={(segment) => setClip(segment === "Clip")}
+            />
+          </Configuration>
+        </>
       )}
     </>
   );

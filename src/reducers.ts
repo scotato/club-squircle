@@ -32,7 +32,7 @@ export enum Types {
   ImageSet = 'IMAGE_SET',
   ImageRemove = 'IMAGE_REMOVE',
   ImageClip = 'IMAGE_CLIP',
-  ImagePad = 'IMAGE_PAD',
+  ImageScale = 'IMAGE_SCALE',
 }
 
 type ShapePayload = {
@@ -58,7 +58,7 @@ type ImagePayload = {
 
   [Types.ImageRemove] : undefined;
   [Types.ImageClip] : boolean;
-  [Types.ImagePad] : number;
+  [Types.ImageScale] : number;
 }
 
 export type ShapeActions =
@@ -120,8 +120,8 @@ export const imageReducer = (
       return initialState.image
     case Types.ImageClip:
       return {...state, clip: action.payload};
-    case Types.ImagePad:
-      return {...state, padding: action.payload};
+    case Types.ImageScale:
+      return {...state, scale: action.payload};
     default:
       return state
   }

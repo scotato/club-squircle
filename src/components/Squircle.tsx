@@ -6,9 +6,10 @@ import { rgbFromHsl } from "../colors";
 export const SquircleImage = (props: SquircleProps) => {
   const { width = 1024, height = 1024 } = props.shape;
   const squircle = useSquircle();
-  const { src, filename } = useImage();
+  const { src, filename, scale, clip } = useImage();
   const squirclePath = createSquirclePath(squircle);
   const d = squirclePath.replace(/\r?\n|\r| {4}/g, ""); // remove newlines and indentation
+  const mask = "url(#SquircleMask)";
 
   return (
     <svg
@@ -23,21 +24,26 @@ export const SquircleImage = (props: SquircleProps) => {
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"
-        width="100%"
-        height="100%"
+        width={width}
+        height={height}
       >
         <path d={d} />
       </mask>
       <path d={d} fill={squircle.style.fillColor} />
-      <image
-        id={filename}
-        width="100%"
-        height="100%"
-        mask="url(#SquircleMask)"
-        xlinkHref={src}
-        preserveAspectRatio="xMinYMin slice"
-        fill="red"
-      />
+      <g mask={mask}>
+        <image
+          id={filename}
+          width={width}
+          height={height}
+          mask={clip ? mask : ""}
+          xlinkHref={src}
+          preserveAspectRatio="xMinYMin slice"
+          style={{
+            transform: `scale(${scale / 100})`,
+            transformOrigin: `50%`,
+          }}
+        />
+      </g>
     </svg>
   );
 };
@@ -96,14 +102,21 @@ export const squircleImageString = (squircle: SquircleProps) => {
         <path d="${d}"></path>
       </mask>
       <path d="${d}" fill="${squircle.style.fillColor}" />
-      <image
-        id="image0"
-        width="100%"
-        height="100%"
-        mask="url(#SquircleMask)"
-        xlink:href="${squircle.image?.src}"
-        preserveAspectRatio="xMinYMin slice"
-      />
+      <g mask="url(#SquircleMask)">
+        <image
+          id="image0"
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          mask="${squircle.image.clip ? "url(#SquircleMask)" : ""}"
+          xlink:href="${squircle.image?.src}"
+          preserveAspectRatio="xMinYMin slice"
+          style="transform: scale(${
+            squircle.image.scale / 100
+          }); transform-origin: 50%;"
+        />
+      </g>
     </svg>
   `;
 };

@@ -8,7 +8,7 @@ export type SquircleImage = {
   filename: string
   src: string
   clip: boolean
-  padding: number
+  scale: number
 }
 
 export type SquircleStyle =  {
@@ -54,8 +54,8 @@ export const SquircleStyleInitialState = {
 export const SquircleImageInitialState = { 
   filename: "",
   src: "",
-  padding: 0,
-  clip: false
+  scale: 100,
+  clip: true
 }
 
 export type InitialState = {
