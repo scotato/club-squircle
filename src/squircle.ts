@@ -77,13 +77,13 @@ function radiusFromC (c?: number) {
 
   switch (Number(c)) {
     case 1:
-      return byRatio(0.0375)
-    case 2:
-      return byRatio(0.0750)
-    case 3:
       return byRatio(0.1500)
+    case 2:
+      return byRatio(0.1955)
+    case 3:
+      return byRatio(0.2410)
     case 4:
-      return byRatio(0.2984)
+      return byRatio(0.2865)
     case 5:
       return byRatio(0.3320)
     case 6:
