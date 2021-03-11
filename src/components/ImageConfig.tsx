@@ -5,6 +5,7 @@ import {
   InputLeftElement,
   InputRightElement,
   IconButton,
+  VStack,
 } from "@chakra-ui/react";
 import { AttachmentIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useImage } from "../hooks";
@@ -19,7 +20,7 @@ const ImageConfig = () => {
   const content = hasImage ? `"${filename}"` : `"Add an Image"`;
 
   return (
-    <>
+    <VStack p={6} spacing={6} alignItems="stretch">
       <Configuration label="Image">
         <InputGroup>
           <InputLeftElement
@@ -72,7 +73,7 @@ const ImageConfig = () => {
           </Configuration>
         </>
       )}
-    </>
+    </VStack>
   );
 };
 

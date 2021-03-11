@@ -1,15 +1,14 @@
 import React from "react";
-import { Box, BoxProps, useColorModeValue } from "@chakra-ui/react";
+import { Stack, Divider, BoxProps, useColorModeValue } from "@chakra-ui/react";
 
 const Sidebar = (props: BoxProps) => {
   const bg = useColorModeValue("white", "gray.900");
 
   return (
-    <Box
-      p={6}
-      display="flex"
-      flexDirection="column"
-      overflowY="auto"
+    <Stack
+      spacing={0}
+      divider={<Divider />}
+      overflowY="scroll"
       bg={bg}
       {...props}
     />

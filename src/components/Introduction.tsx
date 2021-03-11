@@ -18,7 +18,7 @@ const Reference = ({ to, text }: ReferenceProps) => (
 );
 
 const Introduction = () => (
-  <Stack mb={2} p={2} spacing={4}>
+  <Stack mb={2} p={8} spacing={4}>
     <Box
       title="Squircle"
       as={SquircleWordmark}

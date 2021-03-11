@@ -9,7 +9,7 @@ const Navigation = () => {
   const bgHover = useColorModeValue("gray.100", "black");
 
   return (
-    <Stack spacing={2} direction="column">
+    <Stack p={4} spacing={2} direction="column">
       <LinkButton
         leftIcon={<FigmaLogo width={24} height={24} />}
         justifyContent="flex-start"

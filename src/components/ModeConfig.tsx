@@ -1,7 +1,21 @@
 import React from "react";
+import { VStack } from "@chakra-ui/react";
 import { useSquircle } from "../hooks";
 import { SquircleMode } from "../squircle";
 import SegmentedControl from "./SegmentedControl";
+import SimpleConfig from "./SimpleConfig";
+import RelativeConfig from "./RelativeConfig";
+
+const ModeSwitch = () => {
+  const { shape } = useSquircle();
+  switch (shape.mode) {
+    case SquircleMode.Relative:
+      return <RelativeConfig />;
+    case SquircleMode.Simple:
+    default:
+      return <SimpleConfig />;
+  }
+};
 
 const ModeConfig = () => {
   const { shape, setMode } = useSquircle();
@@ -27,11 +41,14 @@ const ModeConfig = () => {
   };
 
   return (
-    <SegmentedControl
-      segments={["Simple", "Advanced"]}
-      activeSegment={activeSegment(shape.mode)}
-      onSegmentClick={onSegmentClick}
-    />
+    <VStack p={6} spacing={6} alignItems="stretch">
+      <SegmentedControl
+        segments={["Simple", "Advanced"]}
+        activeSegment={activeSegment(shape.mode)}
+        onSegmentClick={onSegmentClick}
+      />
+      <ModeSwitch />
+    </VStack>
   );
 };
 

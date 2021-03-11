@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
-  Box,
+  AspectRatio,
+  VStack,
   Grid,
   Text,
   Button,
@@ -14,36 +15,34 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 const ColorPalette = () => {
   const colors = useColors();
   const { style, setFillColor } = useSquircle();
-  const borderColor = useColorModeValue("gray.100", "gray.700");
+  const borderColor = useColorModeValue("gray.200", "black");
 
   return (
-    <Grid
-      gridTemplateColumns="repeat(10, 24px)"
-      gridRowGap={1}
-      transform="translateX(-2px)"
-    >
+    <Grid gridTemplateColumns="repeat(10, 1fr)">
       {Object.keys(colors).map((fillKey) =>
         Object.keys(colors[fillKey]).map((scaleKey) => {
           const color = colors[fillKey][scaleKey];
           const isSelected = color === style.fillColor;
 
           return (
-            <Button
-              key={`${fillKey}.${scaleKey}`}
-              p="1px"
-              width="20px"
-              height="20px"
-              minWidth={0}
-              bg="transparent"
-              borderWidth={2}
-              borderRadius={7}
-              borderColor={isSelected ? "blue.500" : borderColor}
-              onClick={() => setFillColor(color)}
-              _hover={{ bg: "transparent" }}
-              _active={{ bg: "transparent" }}
-            >
-              <Box width={3} height={3} bg={color} borderRadius={3} />
-            </Button>
+            <AspectRatio ratio={1} key={`${fillKey}.${scaleKey}`}>
+              <Button
+                aria-label={color}
+                p={0}
+                borderWidth={2}
+                borderColor={borderColor}
+                minWidth={0}
+                borderRadius="100%"
+                bg={color}
+                position="absolute"
+                width="85%"
+                height="85%"
+                boxShadow={isSelected ? "outline" : "none"}
+                onClick={() => setFillColor(color)}
+                _hover={{ filter: "brightness(80%)" }}
+                _active={{ filter: "brightness(60%)" }}
+              />
+            </AspectRatio>
           );
         })
       )}
@@ -57,32 +56,38 @@ const ImageConfig = () => {
   const borderColor = useColorModeValue("white", "gray.900");
 
   return (
-    <Configuration label="Fill">
-      <>
-        <Button
-          px={3}
-          leftIcon={
-            <Circle
-              size="5"
-              borderWidth={2}
-              borderColor={borderColor}
-              bg={style.fillColor}
-            />
-          }
-          justifyContent="space-between"
-          rightIcon={
-            isEditMode ? <ChevronUpIcon mt={-1} /> : <ChevronDownIcon mt={-1} />
-          }
-          onClick={() => setIsEditMode(!isEditMode)}
-          children={<Text mr="auto">{fillName}</Text>}
-          fontWeight="400"
-          color="gray.500"
-          textTransform="capitalize"
-          isFullWidth
-        />
-        {isEditMode && <ColorPalette />}
-      </>
-    </Configuration>
+    <VStack p={6} spacing={6} alignItems="stretch">
+      <Configuration label="Fill">
+        <>
+          <Button
+            px={3}
+            leftIcon={
+              <Circle
+                size="5"
+                borderWidth={2}
+                borderColor={borderColor}
+                bg={style.fillColor}
+              />
+            }
+            justifyContent="space-between"
+            rightIcon={
+              isEditMode ? (
+                <ChevronUpIcon mt={-1} />
+              ) : (
+                <ChevronDownIcon mt={-1} />
+              )
+            }
+            onClick={() => setIsEditMode(!isEditMode)}
+            children={<Text mr="auto">{fillName}</Text>}
+            fontWeight="400"
+            color="gray.500"
+            textTransform="capitalize"
+            isFullWidth
+          />
+          {isEditMode && <ColorPalette />}
+        </>
+      </Configuration>
+    </VStack>
   );
 };
 

@@ -19,6 +19,7 @@ export const Actions = () => {
 
   return (
     <Stack
+      p={6}
       spacing={2}
       direction="row"
       justifyContent="center"

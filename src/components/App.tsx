@@ -5,7 +5,9 @@ import Introduction from "./Introduction";
 import Navigation from "./Navigation";
 import Actions from "./Actions";
 import SquirclePreview from "./SquirclePreview";
-import SquircleConfig from "./SquircleConfig";
+import ModeConfig from "./ModeConfig";
+import ImageConfig from "./ImageConfig";
+import FillConfig from "./FillConfig";
 import DownloadSquircle from "./DownloadSquircle";
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
       <SquirclePreview />
 
       <Sidebar>
-        <SquircleConfig />
+        <ModeConfig />
+        <FillConfig />
+        <ImageConfig />
         <DownloadSquircle />
       </Sidebar>
     </Layout>
